@@ -23,9 +23,10 @@ test_downloads/This Man is an Introvert.webm
 test_downloads/When the Conversation Dies.webm
 test_downloads/Your Friend (Who Sucks).webm
 test_downloads/Youre Slightly Late (And Im Having a Panic Attack).webm
-tests/testing_conversion.py
-tests/testing_downloads.py
-tests/testing_pafy.py
-tests/testing_playlists.py
-tests/testing_working_conversion.py
-tests/teting_subpr_errors.py
+testing/testing_conversion.py
+testing/testing_downloads.py
+testing/testing_pafy.py
+testing/testing_working_conversion.py
+tests/tests_availability_check_prototype.py
+testing/teting_subpr_errors.py
+testing/testing_playlists.py

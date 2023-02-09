@@ -6,6 +6,7 @@ URLS = ['https://youtu.be/7PCkvCPvDXk',
         'https://www.youtube.com/watch?v=DRHTr6wl3Q4&ab_channel=DoraSalvatore', 
         'https://www.youtube.com/watch?v=DRHTr6wl3Q4']
 LINKS = ['https://youtu.be/', 'https://www.youtube.com/watch?', 'youtu.be/', 'youtube.com/watch?']
+CLEAN_LINK = 'Ссылка на видео должна начинаться как один из примеров:\n{LINKS[0]}\n{LINKS[1]}\n{LINKS[2]}\n{LINKS[3]}'
 
 class Checker:
     def __init__(self, url):
@@ -17,11 +18,17 @@ class Checker:
 
     def check_status_code(self):
         if self.url:
-            response = requests.get(self.url)
-            print(response.status_code)
-        if response.status_code == 200:
-            print('Yep')
-            return True #?
+            try:
+                response = requests.get(self.url)
+            except:
+                return "Ресурс недоступен."
+            if response.status_code == 200:
+                return True
+            else:
+                return f'Ошибка в ссылке или доступ к видео ограничен. Код ошибки - {response.status_code}'
+        else:
+            return "Ссылка не соответстует требованиям:\n{CLEAN_LINK}"
+
 
 # For tests.
 for url in URLS:
