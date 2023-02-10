@@ -34,5 +34,3 @@ rename(output_file, f"{path.join(DIRECTORY, title)}.mp3")
 
 if p.returncode == 0:
     remove(input_file)
-
-#TODO Добавить обход возраста, проверку на доступность.

@@ -30,3 +30,11 @@ testing/testing_working_conversion.py
 tests/tests_availability_check_prototype.py
 testing/teting_subpr_errors.py
 testing/testing_playlists.py
+prototypes/tests/__pycache__/tests_availability_check_prototype.cpython-311.pyc
+prototypes/tests/__pycache__/__init__.cpython-311.pyc
+prototypes/tests/__pycache__/tests_functional_download_prototype.cpython-311.pyc
+prototypes/__pycache__/functional_download_prototype.cpython-311.pyc
+prototypes/__pycache__/availability_check_prototype.cpython-311.pyc
+prototypes/__pycache__/__init__.cpython-311.pyc
+__pycache__/main.cpython-311.pyc
+__pycache__/availability_check_prototype.cpython-311.pyc

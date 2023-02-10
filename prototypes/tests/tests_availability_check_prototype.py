@@ -1,6 +1,8 @@
 import unittest
-from availability_check_prototype import URLS, LINKS, CLEAN_LINK, Checker
+from .. import URLS, EXAMPLES, CLEAN_LINK, ERRORS, Checker
 import requests
+
+STREAM = '<Stream: itag="251" mime_type="audio/webm" abr="160kbps" acodec="opus" progressive="False" type="audio">'
 
 class TestChecker(unittest.TestCase):
     def test_check_status_code(self):
@@ -10,7 +12,12 @@ class TestChecker(unittest.TestCase):
                 'https://www.youtube.com/watch?v=DRHTr6wl3Q4&ab_channel=DoraSalvatore', 
                 'https://www.youtube.com/watch?v=DRHTr6wl3Q4',
                 'https://bad.link']
-        expected_outputs = [True, True, True, True, True, "Ссылка не соответстует требованиям:\n{CLEAN_LINK}"]
+        expected_outputs = [STREAM,
+                            STREAM, 
+                            STREAM,
+                            STREAM,
+                            STREAM, 
+                            f"Ссылка не соответстует требованиям:\n{CLEAN_LINK}"]
         for i, url in enumerate(urls):
             test = Checker(url)
             result = test.check_status_code()
