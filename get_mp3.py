@@ -8,7 +8,8 @@ BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'"]
 CONVERSION = r"ffmpeg -i {} -codec:a libmp3lame -qscale:a 2 {}"
 WEBM = r'{}.webm'
 MP3 = r"{}.mp3"
-ERROR = r'Произошла ошибка при конвертации в mp3 песни {} канала {}'
+CONVERSION_ERROR = r'Произошла ошибка при конвертации в mp3 песни {} канала {}'
+DOWNLOADING_ERROR = r'Произошла ошибка при скачивании файла. Видео: {} канала {}.'
 
 class Downloader:
     def __init__(self, yt):
@@ -27,8 +28,10 @@ class Downloader:
         self.finished_title = altered_title.replace(" ", "_")
 
     def download(self):
-        self.stream.download(output_path='songs', filename=f'{self.finished_title}.webm')
-
+        try:
+            self.stream.download(output_path='songs', filename=f'{self.finished_title}.webm')
+        except:
+            return DOWNLOADING_ERROR.format(self.title, self.author)
 
     def convert(self):
         input_file = WEBM.format(path.join('songs', self.finished_title))
@@ -39,7 +42,7 @@ class Downloader:
             remove(input_file)
             self.set_tags(output_file)
         else:
-            return ERROR.format(self.title, self.author)
+            return CONVERSION_ERROR.format(self.title, self.author)
 
     def set_tags(self, output_file):
         base = eyed3.load(output_file)
@@ -49,4 +52,6 @@ class Downloader:
         self.rename_song(output_file)
 
     def rename_song(self, output_file):
-        rename(output_file, MP3.format(path.join('songs', self.altered_title)))
+        new_name = MP3.format(path.join('songs', self.altered_title))
+        rename(output_file, new_name)
+        return new_name
