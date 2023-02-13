@@ -3,7 +3,7 @@ import subprocess
 from os import remove, rename
 import os.path as path
 import eyed3
-from TEXTS import  BAN_LIST, CONVERSION, WEBM, MP3, CONVERSION_ERROR, DOWNLOADING_ERROR
+from TEXTS import BAN_LIST, CONVERSION, WEBM, MP3, CONVERSION_ERROR, DOWNLOADING_ERROR
 
 
 class Downloader:

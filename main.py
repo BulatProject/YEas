@@ -42,12 +42,12 @@ async def random_meme(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = str(update.message.text)
-    first_check = Preparator(message)
+    first_check = Preparator(message)                           # Checking if message starts from command name (single track or playlist)
     if not first_check.results[0]:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=first_check.results[1], disable_web_page_preview=True)
         return
-    shortened_message = message[5:].strip()
-    if first_check.results[1] == STARTING_WORDS[1]:
+    shortened_message = message[5:].strip()                     # Slicing command name from text.
+    if first_check.results[1] == STARTING_WORDS[1]:             # Checking command name again.
         cleaned_message = first_check.divide_n_clean_message(shortened_message)
         if not cleaned_message[0]:
             await context.bot.send_message(chat_id=update.effective_chat.id, text=cleaned_message[1])
@@ -108,8 +108,7 @@ async def iloveyou(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=ILOVEYOU)
 
 
-#TODOErrorerror(update, context):\nlogger.warning("Update '%s' caused error '%s'", update, context.error)
-#Все манипуляции с файлами перенесены в эту функцию.
+#All manipulations with files are being made from this function.
 def pre_download(update, message):
     check = check_url(message)
     if not check[0]:
