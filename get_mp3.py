@@ -3,17 +3,8 @@ import subprocess
 from os import remove, rename
 import os.path as path
 import eyed3
+from TEXTS import  BAN_LIST, CONVERSION, WEBM, MP3, CONVERSION_ERROR, DOWNLOADING_ERROR
 
-BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", 
-        '(Official Video)', '(Official Music Video)', '(Official Audio)', 
-        '[Official Music Video]', '[Official Video]', '[Official Audio]', 
-        '(Lyrics)', '(lyrics)', '(Lyric Video)', '(Official Lyrics Video)', 
-        '(Official Video)', '(High Quality)', 'Lyrics', 'lyrics']
-CONVERSION = r"ffmpeg -i {} -codec:a libmp3lame -qscale:a 2 {}"
-WEBM = r'{}.webm'
-MP3 = r"{}.mp3"
-CONVERSION_ERROR = r'Произошла ошибка при конвертации в mp3 песни {} канала {}'
-DOWNLOADING_ERROR = r'Произошла ошибка при скачивании файла. Видео: {} канала {}.'
 
 class Downloader:
     def __init__(self, yt, path):
