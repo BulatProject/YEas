@@ -19,38 +19,39 @@ def error(update, context):
 
 #TODO Кнопки: Один трек, плейлист.
 
-API_TOKEN = 'TOKEN'
-START = 'Выбери команду.\nПрочти описание, введя: "\\help".'
+API_TOKEN = '6123672240:AAGTwrJZ5vrC_Mrv2kO7pkBYsvjiPe7ASlk'
+START = 'Выбери команду.\nПрочти описание, введя: "/help".'
 HELP = \
 '''Данный бот предназначен для скачивания песен с YouTube, но его можно использовать и для скачивания аудиоряда из любого видео.
 Бот скачивает аудиоряд в формате webm, а затем конвертирует в mp3, добавляя теги.
 
 Скачивать песни можно как по одной, так группой из плейлистов.
 
-Название видео становится названием трека, а название канала именем исполнителя.
+Название видео становится названием трека, а название канала - именем исполнителя.
 После скачивания, соответственно, советую подкорректировать инфомацию, если это имеет для вас значение.
 
-Из-за особенностей библиотеки FFMPEG, которая используется для конвертации файлов, название файла может не соответствовать названию видео.
+Из-за особенностей библиотеки FFMPEG, которая используется для конвертации файлов, название файла может не совпадать с названием видео.
+
 Если в названии видео присутстуют символы из следующего списка: '/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", то файл точно будет иметь другое название.
 Воздержитесь от скачивания видео с нестандартными символами в названии.
 
 ВАЖНО. Если в названии видео есть иероглифы, то название файла будет пустым.
 Поэтому не передавайте боту плейлисты, в которых больше одной песни с иероглифами в названии подряд.
 
-Чтобы посмотреть доступные команды, нберите \commands.
+Чтобы посмотреть доступные команды, наберите \commands.
 '''
 
 COMMANDS = \
 '''
-\start - запустить бота.
-\help - узнать основную информацию о боте.
-\commands - получить эту инструкцию.
+/start - запустить бота.
+/help - узнать основную информацию о боте.
+/commands - получить эту инструкцию.
 '''
 
 
 class My:
     def __init__(self):
-        # Бот ответственен за отправку песен!
+        # Бот, скорее всего, будет не нужен.
         self.bot = telegram.Bot(token=API_TOKEN)
         self.updater = Updater(token=API_TOKEN)
         # Step 4: Start the bot
@@ -59,7 +60,7 @@ class My:
         # Ответ на команды \start, \help, \commands.
         self.dispatcher.add_handler(CommandHandler('start', self.handle_start))
         self.dispatcher.add_handler(CommandHandler('help', self.handle_help))
-        self.dispatcher.add_handler(CommandHandler('help', self.handle_commands))
+        self.dispatcher.add_handler(CommandHandler('commands', self.handle_commands))
 
         # Задаём ответ на любое текстовое сообщение.
         self.dispatcher.add_handler(MessageHandler(filters.text, self.communicate))
@@ -80,7 +81,7 @@ class My:
             # Файл отправляется пользоватею, а затем удаляется.
                 # Добавить пересылку файла в чат с последующим удалением.
                 # Send the file to the chat
-                # bot.send_document(chat_id=update.message.chat_id, document=open(file_name, "rb"))
+                # bot.send_document(chat_id=update.message.chat_id, document=open(result[1], "rb"))
             pass
         else:
             # Сообщение об ошибке отправлется пользователю.
@@ -91,7 +92,7 @@ class My:
         if text == 'Один трек':
             # Что делать, когда нажали на кнопку?
             pass
-        self.check_url(text)
+            self.check_url(text)
 
     def check_url(self, text):
         handling = Checker(text)
@@ -136,3 +137,5 @@ class My:
 
 
 
+if __name__ == '__main__':
+    test = My()
