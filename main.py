@@ -33,12 +33,6 @@ async def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=WRONG_COMMAND)
 
-async def random_meme(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    memes = listdir('memes')
-    i = random.randrange(len(memes))    
-    meme_to_post = path.join('memes', memes[i])
-    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=meme_to_post)
-
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = str(update.message.text)
@@ -104,10 +98,6 @@ def convert_file(download):
     return file_path
 
 
-async def iloveyou(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text=ILOVEYOU)
-
-
 #All manipulations with files are being made from this function.
 def pre_download(update, message):
     check = check_url(message)
@@ -127,16 +117,12 @@ if __name__ == '__main__':
     commands_handler = CommandHandler('commands', commands)
     info_handler = CommandHandler('info', info)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
-    love = CommandHandler('iloveyou', iloveyou)
-    meme = CommandHandler('meme', random_meme)
 
     application.add_handler(message_handler)
     application.add_handler(start_handler)
     application.add_handler(help_handler)
     application.add_handler(commands_handler)
     application.add_handler(info_handler)
-    application.add_handler(love)
-    application.add_handler(meme)
     application.add_handler(unknown_handler)
 
     application.run_polling()
