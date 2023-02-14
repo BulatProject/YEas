@@ -41,7 +41,7 @@ class Preparator:
         return (True, playlist_range)
 
     def check_range(self, playlist_range):
-        if -1 > (playlist_range[1] - playlist_range[0]) < 21:
+        if -1 < (playlist_range[1] - playlist_range[0]) < 21:
             return (True, playlist_range)
         return (False, RANGE_ERROR.format(playlist_range[1] - playlist_range[0]))
 
