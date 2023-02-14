@@ -5,11 +5,15 @@ from check_availability import Checker
 from get_mp3 import Downloader
 from prepare_text import Preparator
 from pytube import Playlist
-from os import remove, listdir, path
-from TOK import TOKEN
+from os import remove, listdir, path, getenv
 import random
 from TEXTS import *
+from dotenv import load_dotenv
 
+load_dotenv()
+TOKEN = getenv("TOKEN")
+
+docker compose up
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
@@ -32,6 +36,20 @@ async def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=WRONG_COMMAND)
+
+async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    logger.warning("Update '%s' caused error '%s'", update, context.error)
+
+# Easer egg
+async def iloveyou(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=ILOVEYOU)
+
+# Easer egg
+async def random_meme(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    memes = listdir('memes')
+    i = random.randrange(len(memes))
+    meme_to_post = path.join('memes', memes[i])
+    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=meme_to_post)
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -116,6 +134,8 @@ if __name__ == '__main__':
     help_handler = CommandHandler('help', help)
     commands_handler = CommandHandler('commands', commands)
     info_handler = CommandHandler('info', info)
+    love = CommandHandler('iloveyou', iloveyou)
+    meme = CommandHandler('meme', random_meme)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
 
     application.add_handler(message_handler)
@@ -123,6 +143,9 @@ if __name__ == '__main__':
     application.add_handler(help_handler)
     application.add_handler(commands_handler)
     application.add_handler(info_handler)
+    application.add_handler(love)
+    application.add_handler(meme)
     application.add_handler(unknown_handler)
+    application.add_error_handler(error)
 
     application.run_polling()

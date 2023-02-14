@@ -1,46 +1,7 @@
-test_conversions/Doja_pytube_webm.mp3
-test_conversions/DORA - Call Me Back (Official Video).mp3
-test_conversions/Harry Styles - Watermelon Sugar (Official Audio).mp3
-test_conversions/Me_140_webm.mp4
-test_conversions/Me_first.mp4
-test_conversions/Megh_pytube.mp3
-test_conversions/Megh.webm
-test_conversions/Megh1_pafy.mp3
-test_conversions/Megh1.m4a
-test_conversions/Meghan Trainor - All About That Bass.mp3
-test_conversions/Meghan_140.mp3
-test_conversions/Meghan_EXTERNAL.mp3
-test_conversions/Meghan_first.mp3
-test_conversions/Meghan_pytube.mp3
-test_downloads/First Date (First Question).webm
-test_downloads/Hit Me With Your Car.webm
-test_downloads/Living With Your Girlfriend You Dont Like Anymore (the song).webm
-test_downloads/Meltt - Love Again.webm
-test_downloads/Realistic Love Song (For Average Folk).webm
-test_downloads/Tell Me Your Name Again.webm
-test_downloads/Tennis - Need Your Love (Official Video).webm
-test_downloads/This Man is an Introvert.webm
-test_downloads/When the Conversation Dies.webm
-test_downloads/Your Friend (Who Sucks).webm
-test_downloads/Youre Slightly Late (And Im Having a Panic Attack).webm
-testing/testing_conversion.py
-testing/testing_downloads.py
-testing/testing_pafy.py
-testing/testing_working_conversion.py
-tests/tests_availability_check_prototype.py
-testing/teting_subpr_errors.py
-testing/testing_playlists.py
-prototypes/tests/__pycache__/tests_availability_check_prototype.cpython-311.pyc
-prototypes/tests/__pycache__/__init__.cpython-311.pyc
-prototypes/tests/__pycache__/tests_functional_download_prototype.cpython-311.pyc
-prototypes/__pycache__/functional_download_prototype.cpython-311.pyc
-prototypes/__pycache__/availability_check_prototype.cpython-311.pyc
-prototypes/__pycache__/__init__.cpython-311.pyc
-__pycache__/main.cpython-311.pyc
-__pycache__/availability_check_prototype.cpython-311.pyc
+requirements.txt
 __pycache__/check_availability.cpython-311.pyc
 __pycache__/get_mp3.cpython-311.pyc
 __pycache__/prepare_text.cpython-311.pyc
-MY_TOKEN.txt
-TOK.py
+__pycache__/TEXTS.cpython-311.pyc
 __pycache__/TOK.cpython-311.pyc
+.env
