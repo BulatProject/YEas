@@ -125,8 +125,7 @@ def pre_download(update, message):
         return result
     return (True, result[1])
 
-
-if __name__ == '__main__':
+def main():
     application = ApplicationBuilder().token(TOKEN).build()
     message_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message)
     start_handler = CommandHandler('start', start)
@@ -148,3 +147,7 @@ if __name__ == '__main__':
     application.add_error_handler(error)
 
     application.run_polling()
+
+
+if __name__ == '__main__':
+    main()

@@ -1,8 +1,3 @@
-Packages used:
-python-telegram-bot v20.1
-ffmpeg version 5.1.2
-Pytube version: 12.1.2
-
 This code could be used to create a telegram bot, which would be able to download single audiofiles from Youtube videos or multiple ones from playlists via link.
 
 Using the code without adjustments:
