@@ -38,19 +38,27 @@ class Downloader:
             remove(input_file)
             return self.set_tags(output_file)
         else:
+            remove(input_file)
             return (False, CONVERSION_ERROR.format(self.title, self.author))
 
     def set_tags(self, output_file):
-        base = eyed3.load(output_file)
-        if ' - ' not in self.altered_title:
-            base.tag.title = self.altered_title
-            base.tag.artist = self.author
-        else:
-            base.tag.artist, base.tag.title = self.altered_title.split(' - ')
-        base.tag.save()
-        return self.rename_song(output_file)
+        try:
+            base = eyed3.load(output_file)
+            if ' - ' not in self.altered_title:
+                base.tag.title = self.altered_title
+                base.tag.artist = self.author
+            else:
+                base.tag.artist, base.tag.title = self.altered_title.split(' - ')
+            base.tag.save()
+            return self.rename_song(output_file)
+        except:
+            return self.rename_song(output_file)
 
     def rename_song(self, output_file):
-        new_name = MP3.format(path.join(self.path, self.altered_title))
-        rename(output_file, new_name)
-        return (True, new_name)
+        try:
+            new_name = MP3.format(path.join(self.path, self.altered_title))
+            rename(output_file, new_name)
+            return (True, new_name)
+        except:
+            return (True, output_file)
+        

@@ -4,6 +4,7 @@ charset-normalizer==3.0.1
 coverage==5.5
 deprecation==2.1.0
 eyed3==0.9.7
+ffmpeg==1.4
 filetype==1.2.0
 h11==0.14.0
 h2==4.1.0
