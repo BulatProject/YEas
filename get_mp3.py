@@ -20,7 +20,9 @@ class Downloader:
             if symbol in title:
                 title = title.replace(symbol, '')
         self.altered_title = title
-        self.finished_title = title.replace(" ", "_")
+        finished_title = title.replace(" ", "_")
+        finished_title = finished_title.replace("(", "")
+        self.finished_title = finished_title.replace(")", "")
 
     def download(self):
         try:
@@ -32,14 +34,19 @@ class Downloader:
     def convert(self):
         input_file = WEBM.format(path.join(self.path, self.finished_title))
         output_file = MP3.format(path.join(self.path, self.finished_title))
-        command = CONVERSION.format(path.join('.', 'venv', self.path, input_file), path.join('.', 'venv', self.path, output_file))
-        converting = subprocess.run(command, shell=True)
-        if converting.returncode == 0:
-            remove(input_file)
-            return self.set_tags(output_file)
-        else:
-            remove(input_file)
-            return (False, CONVERSION_ERROR.format(self.title, self.author))
+        command = CONVERSION.format(input_file, output_file)
+        try:
+            converting = subprocess.run(command, shell=True)
+            if converting.returncode == 0:
+                remove(input_file)
+                return self.set_tags(output_file)
+            else:
+                remove(input_file)
+                return (False, CONVERSION_ERROR.format(self.title, self.author))
+        except:
+                remove(input_file)
+                return (False, CONVERSION_ERROR.format(self.title, self.author))
+
 
     def set_tags(self, output_file):
         try:
