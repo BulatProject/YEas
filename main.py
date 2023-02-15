@@ -68,7 +68,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await context.bot.send_message(chat_id=update.effective_chat.id, text=cleaned_range[1])
             return
         playlist = first_check.get_playlist(cleaned_message[2])
-        if cleaned_range[1][0] - cleaned_range[1][1] > len(playlist):
+        if cleaned_range[1][1] > len(playlist):
             await context.bot.send_message(chat_id=update.effective_chat.id, text=RANGE_TOO_BIG)
             return
         for song in playlist[cleaned_range[1][0]:cleaned_range[1][1]]:
