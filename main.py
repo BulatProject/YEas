@@ -84,7 +84,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id, text=final_result[1], disable_web_page_preview=True)
     else:
         await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
-    remove(final_result[1])
+        remove(final_result[1])
 
 
 def check_url(text):

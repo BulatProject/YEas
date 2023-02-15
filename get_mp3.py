@@ -44,8 +44,8 @@ class Downloader:
                 remove(input_file)
                 return (False, CONVERSION_ERROR.format(self.title, self.author))
         except:
-                remove(input_file)
-                return (False, CONVERSION_ERROR.format(self.title, self.author))
+            remove(input_file)
+            return (False, CONVERSION_ERROR.format(self.title, self.author))
 
 
     def set_tags(self, output_file):
