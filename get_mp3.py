@@ -27,9 +27,9 @@ class Downloader:
     def download(self):
         try:
             self.stream.download(output_path=self.path, filename=f'{self.finished_title}.webm')
+            return (True, self)
         except:
-            return (False, DOWNLOADING_ERROR.format(self.title, self.author))
-        return (True, self)
+            return (False, DOWNLOADING_ERROR.format(self.title, self.author))        
 
     def convert(self):
         input_file = WEBM.format(path.join(self.path, self.finished_title))

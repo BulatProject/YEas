@@ -82,7 +82,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     final_result = pre_download(update, shortened_message)
     if not final_result[0]:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=final_result[1], disable_web_page_preview=True)
-    await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
+    else:
+        await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
     remove(final_result[1])
 
 

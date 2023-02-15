@@ -1,4 +1,4 @@
-FROM python:3.11-bullseye
+FROM python:3.11.0
 WORKDIR /YEasy
 RUN pip install virtualenv
 ENV VIRTUAL_ENV=/venv

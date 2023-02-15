@@ -11,7 +11,8 @@ BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'",
         '(Official Video)', '(Official Music Video)', '(Official Audio)', 
         '[Official Music Video]', '[Official Video]', '[Official Audio]', 
         '(Lyrics)', '(lyrics)', '(Lyric Video)', '(Official Lyrics Video)', 
-        '(Official Video)', '(High Quality)', 'Lyrics', 'lyrics']
+        '(Official Video)', '(Audio)', '(Video)', '(High Quality)', 
+        'Lyrics', 'lyrics']
 
 CONVERSION = r"ffmpeg -i {} -codec:a libmp3lame -qscale:a 2 {}"
 WEBM = r'{}.webm'
