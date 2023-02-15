@@ -32,7 +32,7 @@ class Downloader:
     def convert(self):
         input_file = WEBM.format(path.join(self.path, self.finished_title))
         output_file = MP3.format(path.join(self.path, self.finished_title))
-        command = CONVERSION.format(input_file, output_file)
+        command = CONVERSION.format(path.join('.', 'venv', self.path, input_file), path.join('.', 'venv', self.path, output_file))
         converting = subprocess.run(command, shell=True)
         if converting.returncode == 0:
             remove(input_file)
@@ -48,7 +48,7 @@ class Downloader:
                 base.tag.title = self.altered_title
                 base.tag.artist = self.author
             else:
-                base.tag.artist, base.tag.title = self.altered_title.split(' - ')
+                base.tag.artist, base.tag.title = self.altered_title.split(' - ', 1)
             base.tag.save()
             return self.rename_song(output_file)
         except:
