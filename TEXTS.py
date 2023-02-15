@@ -8,8 +8,10 @@ ERRORS = ["Ресурс недоступен.",
             "Доступ к видео ограничен, или по ссылке {} видео нет."]
 
 BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", 
-        '(Official Video)', '(Official Music Video)', '(Official Audio)', 
+        '(Official Video)', '(Official Music Video)', '(OFFICIAL MUSIC VIDEO)', 
+        '(OFFICIAL VIDEO)', '(OFFICIAL AUDIO)', '(Official Audio)', 
         '[Official Music Video]', '[Official Video]', '[Official Audio]', 
+        '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL VIDEO]', '[OFFICIAL AUDIO]',
         '(Lyrics)', '(lyrics)', '(Lyric Video)', '(Official Lyrics Video)', 
         '(Official Video)', '(Audio)', '(Video)', '(High Quality)', 
         'Lyrics', 'lyrics']
