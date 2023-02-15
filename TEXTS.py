@@ -7,7 +7,7 @@ ERRORS = ["Ресурс недоступен.",
             f"Ссылка не соответстует требованиям:\n{CLEAN_LINK}",
             "Доступ к видео ограничен, или по ссылке {} видео нет."]
 
-BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", 
+BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%', '^',
         '(Official Video)', '(Official Music Video)', '(OFFICIAL MUSIC VIDEO)', 
         '(OFFICIAL VIDEO)', '(OFFICIAL AUDIO)', '(Official Audio)', 
         '[Official Music Video]', '[Official Video]', '[Official Audio]', 
