@@ -50,11 +50,10 @@ async def random_meme(update: Update, context: ContextTypes.DEFAULT_TYPE):
     meme_to_post = path.join('memes', memes[i])
     await context.bot.send_photo(chat_id=update.effective_chat.id, photo=meme_to_post)
 
-async def pre_handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update is not None:
-        handle_message(update, context)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update is None:
+        return
     message = str(update.message.text)
     first_check = Preparator(message)                           # Checking if message starts from command name (single track or playlist)
     if not first_check.results[0]:
