@@ -8,4 +8,4 @@ RUN apt-get -y update && apt-get install -y ffmpeg
 COPY . .
 RUN pip install -r requirements.txt
 CMD ["python", "main.py"]
-EXPOSE 8080/tcp
+EXPOSE 80/tcp
