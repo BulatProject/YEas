@@ -50,6 +50,9 @@ async def random_meme(update: Update, context: ContextTypes.DEFAULT_TYPE):
     meme_to_post = path.join('memes', memes[i])
     await context.bot.send_photo(chat_id=update.effective_chat.id, photo=meme_to_post)
 
+async def pre_handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update is not None:
+        handle_message(update, context)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = str(update.message.text)
@@ -75,7 +78,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             final_result = pre_download(update, song)
             if not final_result[0]:
                 await context.bot.send_message(chat_id=update.effective_chat.id, text=final_result[1], disable_web_page_preview=True)
-                continue;
             else:
                 await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
                 remove(final_result[1])
@@ -84,8 +86,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not final_result[0]:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=final_result[1], disable_web_page_preview=True)
     else:
-        await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
-        remove(final_result[1])
+        await context.bot.send_message(chat_id=update.effective_chat.id, text='Скачивание началось, ожидайте.')
+        try:
+            await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
+        except Exception as e:
+            context.bot.send_message(chat_id=update.effective_chat.id, text='Возникла ошибка при отправке файла.')
+        finally:
+            remove(final_result[1])
 
 
 def check_url(text):
@@ -117,7 +124,7 @@ def convert_file(download):
     return file_path
 
 
-#All manipulations with files are being made from this function.
+#All manipulations with files are made in this function.
 def pre_download(update, message):
     check = check_url(message)
     if not check[0]:

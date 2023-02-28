@@ -9,11 +9,13 @@ ERRORS = ["Ресурс недоступен.",
 
 BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%', '^',
         '(Official Video)', '(Official Music Video)', '(OFFICIAL MUSIC VIDEO)', 
-        '(OFFICIAL VIDEO)', '(OFFICIAL AUDIO)', '(Official Audio)', 
-        '[Official Music Video]', '[Official Video]', '[Official Audio]', 
-        '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL VIDEO]', '[OFFICIAL AUDIO]',
-        '(Lyrics)', '(lyrics)', '(Lyric Video)', '(Official Lyrics Video)', 
-        '(Official Video)', '(Audio)', '(Video)', '(High Quality)', 
+        '(OFFICIAL VIDEO)', '(OFFICIAL AUDIO)', '(Official Audio)', '(Music Video)', '(MUSIC VIDEO)',
+        '[Official Music Video]', '[Official Video]', '[Official Audio]', '[Music Video]',
+        '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]'
+        '(Lyrics)', '(lyrics)', '(Lyric Video)', '(Official Lyrics Video)', '(Official HD Video)'
+        '(Official HQ Video)', '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', 
+        '(Official Video)', '(Audio)', '(Video)', '(High Quality)', '(HIGH QUALITY)', 
+        '(HD)', '(HQ)', '[HQ]', '[HQ]', '(VIDEO)', '(AUDIO)', '[Lyrics]', '[LYRICS]',
         'Lyrics', 'lyrics']
 
 CONVERSION = r"ffmpeg -i {} -codec:a libmp3lame -qscale:a 2 {}"
