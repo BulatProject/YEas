@@ -54,6 +54,7 @@ async def random_meme(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update is None:
         return
+    await context.bot.send_message(chat_id=update.effective_chat.id, text='Запрос обрабатывается, ожидайте.')
     message = str(update.message.text)
     first_check = Preparator(message)                           # Checking if message starts from command name (single track or playlist)
     if not first_check.results[0]:
@@ -61,18 +62,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     shortened_message = message[5:].strip()                     # Slicing command name from text.
     if first_check.results[1] == STARTING_WORDS[1]:             # Checking command name again.
-        cleaned_message = first_check.divide_n_clean_message(shortened_message)
-        if not cleaned_message[0]:
-            await context.bot.send_message(chat_id=update.effective_chat.id, text=cleaned_message[1])
+        playlist = prepare_playlist(first_check, shortened_message)
+        if not playlist[0]:
+            await context.bot.send_message(chat_id=update.effective_chat.id, text=playlist[1], disable_web_page_preview=True)
             return
-        cleaned_range = first_check.check_range(cleaned_message[1])
-        if not cleaned_range[0]:
-            await context.bot.send_message(chat_id=update.effective_chat.id, text=cleaned_range[1])
-            return
-        playlist = first_check.get_playlist(cleaned_message[2])
-        if cleaned_range[1][1] > len(playlist):
-            await context.bot.send_message(chat_id=update.effective_chat.id, text=RANGE_TOO_BIG)
-            return
+        cleaned_range = playlist[2]
         for song in playlist[cleaned_range[1][0]:cleaned_range[1][1]]:
             final_result = pre_download(update, song)
             if not final_result[0]:
@@ -85,7 +79,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not final_result[0]:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=final_result[1], disable_web_page_preview=True)
     else:
-        await context.bot.send_message(chat_id=update.effective_chat.id, text='Скачивание началось, ожидайте.')
         try:
             await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
         except Exception as e:
@@ -93,6 +86,19 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         finally:
             remove(final_result[1])
 
+
+def prepare_playlist(first_check, shortened_message):
+    cleaned_message = first_check.divide_n_clean_message(shortened_message)
+    if not cleaned_message[0]:
+        return (False, cleaned_message[1])
+    cleaned_range = first_check.check_range(cleaned_message[1])
+    if not cleaned_range[0]:
+        return (False, cleaned_range[1])
+    playlist = first_check.get_playlist(cleaned_message[2])
+    if cleaned_range[1][1] > len(playlist):
+        return (False, RANGE_TOO_BIG)
+    else:
+        return (True, playlist, cleaned_range)
 
 def check_url(text):
     handling = Checker(text)

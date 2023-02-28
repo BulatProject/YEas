@@ -1,22 +1,23 @@
-EXAMPLES = ['https://youtu.be/', 'youtu.be/', 'https://www.youtube.com/watch?', 'youtube.com/watch?', 'https://youtube.com/playlist?', 'youtube.com/playlist?']
+EXAMPLES = ('https://youtu.be/', 'youtu.be/', 'https://www.youtube.com/watch?', 'youtube.com/watch?', 'https://youtube.com/playlist?', 'youtube.com/playlist?')
 
 CLEAN_LINK = f'Ссылка на видео должна начинаться как один из примеров и быть не длиннее 130 символов:\n"{EXAMPLES[0]}"\n"{EXAMPLES[1]}"\n"{EXAMPLES[2]}"\n"{EXAMPLES[3]}"\n"{EXAMPLES[4]}"\n"{EXAMPLES[5]}"'
 
-ERRORS = ["Ресурс недоступен.", 
+ERRORS = ("Ресурс недоступен.", 
             r'Ошибка в ссылке или доступ к видео ограничен. Видео: {} Код ошибки: {}.',
             f"Ссылка не соответстует требованиям:\n{CLEAN_LINK}",
-            "Доступ к видео ограничен, или по ссылке {} видео нет."]
+            "Доступ к видео ограничен, или по ссылке {} видео нет.")
 
-BAN_LIST = ['/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%', '^',
-        '(Official Video)', '(Official Music Video)', '(OFFICIAL MUSIC VIDEO)', 
-        '(OFFICIAL VIDEO)', '(OFFICIAL AUDIO)', '(Official Audio)', '(Music Video)', '(MUSIC VIDEO)',
-        '[Official Music Video]', '[Official Video]', '[Official Audio]', '[Music Video]',
-        '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]'
-        '(Lyrics)', '(lyrics)', '(Lyric Video)', '(Official Lyrics Video)', '(Official HD Video)'
-        '(Official HQ Video)', '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', 
-        '(Official Video)', '(Audio)', '(Video)', '(High Quality)', '(HIGH QUALITY)', 
-        '(HD)', '(HQ)', '[HQ]', '[HQ]', '(VIDEO)', '(AUDIO)', '[Lyrics]', '[LYRICS]',
-        'Lyrics', 'lyrics']
+BAN_LIST = ('/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%', '^',
+        '(Official Video)', '(Official Music Video)', '(Official Audio)', '(Music Video)', 
+        '(OFFICIAL VIDEO)', '(OFFICIAL MUSIC VIDEO)', '(OFFICIAL AUDIO)', '(MUSIC VIDEO)',
+        '[Official Video]', '[Official Music Video]', '[Official Audio]', '[Music Video]',
+        '[OFFICIAL VIDEO]', '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]',
+        '(Official HD Video)', '(Official HQ Video)', '(High Quality)', '(HIGH QUALITY)', 
+        '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(VIDEO)', '(AUDIO)', 
+        '(Official Lyrics Video)', '(Lyric Video)', '(Audio)', '(Video)', 
+        '[Official Lyrics Video]', 'Lyrics', 'lyrics', '[lyrics]',
+        '(Lyrics)', '(lyrics)', '[Lyrics]', '[LYRICS]',
+        '(HD)', '(HQ)', '[HQ]', '[HQ]')
 
 CONVERSION = r"ffmpeg -i {} -codec:a libmp3lame -qscale:a 2 {}"
 WEBM = r'{}.webm'
@@ -38,10 +39,11 @@ HELP = \
 
 ВАЖНО!
 Бот автоматически убирает из названия песни следующие комбинации символов (в теги они тоже не попадут):
-'(Official Video)', '(Official Music Video)', '(Official Audio)', \
-'[Official Music Video]', '[Official Video]', '[Official Audio]', \
-'(Lyrics)', '(lyrics)', '(Lyric Video)', '(Official Lyrics Video)', \
-'(Official Video)', '(High Quality)', 'Lyrics', 'lyrics'.
+'(audio)', '(hd)', '(high quality)', '(hq)', '(lyric video)', '(lyrics)', \
+'(music video)', '(official audio)', '(official hd video)', '(official hq video)', \
+'(official lyrics video)', '(official music video)', '(official video)', '(video)', \
+'[hq]', '[lyrics]', '[music video]', '[official audio]', '[official music video]', \
+'[official video]','lyrics').
 
 Также он заполняет теги "исполнители" и "название".
 Если в названии видео нет символа "-", то название видео становится названием трека, а название канала - именем исполнителя.
