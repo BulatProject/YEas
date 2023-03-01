@@ -49,8 +49,6 @@ async def random_meme(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update is None:
-        return
     await context.bot.send_message(chat_id=update.effective_chat.id, text='Запрос обрабатывается, ожидайте.')
     message = str(update.message.text)
     first_check = Preparator(message) # Checking if message starts from command name (single track or playlist)
