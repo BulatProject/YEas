@@ -13,10 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = getenv("TOKEN")
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 logger = logging.getLogger(__name__)
 logger.info("Logging started")
@@ -56,12 +53,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     await context.bot.send_message(chat_id=update.effective_chat.id, text='Запрос обрабатывается, ожидайте.')
     message = str(update.message.text)
-    first_check = Preparator(message)                           # Checking if message starts from command name (single track or playlist)
+    first_check = Preparator(message) # Checking if message starts from command name (single track or playlist)
     if not first_check.results[0]:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=first_check.results[1], disable_web_page_preview=True)
         return
-    shortened_message = message[5:].strip()                     # Slicing command name from text.
-    if first_check.results[1] == STARTING_WORDS[1]:             # Checking command name again.
+    shortened_message = message[5:].strip() # Slicing command name from text.
+    if first_check.results[1] == STARTING_WORDS[1]: # Checking command name again.
         playlist = prepare_playlist(first_check, shortened_message)
         if not playlist[0]:
             await context.bot.send_message(chat_id=update.effective_chat.id, text=playlist[1], disable_web_page_preview=True)
@@ -100,6 +97,7 @@ def prepare_playlist(first_check, shortened_message):
     else:
         return (True, playlist, cleaned_range)
 
+
 def check_url(text):
     handling = Checker(text)
     if not handling.base_check[0]:
@@ -129,7 +127,7 @@ def convert_file(download):
     return file_path
 
 
-#All manipulations with files are made in this function.
+# All manipulations with files are made in this function.
 def pre_download(update, message):
     check = check_url(message)
     if not check[0]:
@@ -138,6 +136,7 @@ def pre_download(update, message):
     if not result[0]:
         return result
     return (True, result[1])
+
 
 def main():
     application = ApplicationBuilder().token(TOKEN).build()
