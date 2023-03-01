@@ -1,6 +1,6 @@
 FROM python:3.11.0
 WORKDIR /YEasy
-RUN pip install virtualenv
+RUN pip install virtualenv==20.19.0
 ENV VIRTUAL_ENV=./venv
 RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
