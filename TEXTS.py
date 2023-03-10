@@ -13,8 +13,8 @@ BAN_LIST = ('/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%
         '[Official Video]', '[Official Music Video]', '[Official Audio]', '[Music Video]',
         '[OFFICIAL VIDEO]', '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]',
         '(Official HD Video)', '(Official HQ Video)', '(High Quality)', '(HIGH QUALITY)', 
-        '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(VIDEO)', '(AUDIO)', 
-        '(Official Lyrics Video)', '(Lyric Video)', '(Audio)', '(Video)', 
+        '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(VIDEO)', '(AUDIO)', '[Audio]',
+        '(Official Lyrics Video)', '(Lyric Video)', '(Video)', '(Audio)', '[AUDIO]',
         '[Official Lyrics Video]', 'Lyrics', 'lyrics', '[lyrics]',
         '(Lyrics)', '(lyrics)', '[Lyrics]', '[LYRICS]',
         '(HD)', '(HQ)', '[HQ]', '[HQ]')
