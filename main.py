@@ -78,7 +78,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         try:
             await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
-        except Exception as e:
+        except Exception:
             context.bot.send_message(chat_id=update.effective_chat.id, text='Возникла ошибка при отправке файла.')
         finally:
             remove(final_result[1])

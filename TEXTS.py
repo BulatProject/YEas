@@ -13,11 +13,14 @@ BAN_LIST = ('/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%
         '[Official Video]', '[Official Music Video]', '[Official Audio]', '[Music Video]',
         '[OFFICIAL VIDEO]', '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]',
         '(Official HD Video)', '(Official HQ Video)', '(High Quality)', '(HIGH QUALITY)', 
-        '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(VIDEO)', '(AUDIO)', '[Audio]',
-        '(Official Lyrics Video)', '(Lyric Video)', '(Video)', '(Audio)', '[AUDIO]',
-        '[Official Lyrics Video]', 'Lyrics', 'lyrics', '[lyrics]',
-        '(Lyrics)', '(lyrics)', '[Lyrics]', '[LYRICS]',
-        '(HD)', '(HQ)', '[HQ]', '[HQ]')
+        '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(Video)', '(Audio)', '[Audio]',
+        '(Official Lyrics Video)', '(Lyric Video)', '(VIDEO)', '(AUDIO)', '[AUDIO]',
+        '[Official Lyrics Video]', '[Lyric Video]',
+        '(lyrics)', '(Lyrics)', '(LYRICS)',
+        '[lyrics]', '[Lyrics]', '[LYRICS]',
+        'Lyrics', 'lyrics', 'LYRICS',
+        '(hd)', '(hq)', '[hd]', '[hq]',
+        '(HD)', '(HQ)', '[HD]', '[HQ]', '[CC]')
 
 CONVERSION = r"ffmpeg -i {} -codec:a libmp3lame -qscale:a 2 {}"
 WEBM = r'{}.webm'
@@ -26,8 +29,8 @@ CONVERSION_ERROR = r'Произошла ошибка при конвертаци
 DOWNLOADING_ERROR = r'Произошла ошибка при скачивании файла. Видео: {} канала {}.'
 
 START = 'Перед использованием ОБЯЗАТЕЛЬНО прочтите описание и инструкцию по использованию бота, введя: "/help" и "/info".'
-HELP = \
-'''Данный бот предназначен для скачивания песен с YouTube, но его можно использовать и для скачивания аудиоряда из любого видео.
+HELP = '''\
+Данный бот предназначен для скачивания песен с YouTube, но его можно использовать и для скачивания аудиоряда из любого видео.
 Бот скачивает аудиоряд в формате webm, а затем конвертирует в mp3, добавляя теги.
 
 Скачивать песни можно как по одной, так группой из плейлистов.
@@ -39,11 +42,19 @@ HELP = \
 
 ВАЖНО!
 Бот автоматически убирает из названия песни следующие комбинации символов (в теги они тоже не попадут):
-'(audio)', '(hd)', '(high quality)', '(hq)', '(lyric video)', '(lyrics)', \
-'(music video)', '(official audio)', '(official hd video)', '(official hq video)', \
-'(official lyrics video)', '(official music video)', '(official video)', '(video)', \
-'[hq]', '[lyrics]', '[music video]', '[official audio]', '[official music video]', \
-'[official video]','lyrics').
+'(Official Video)', '(Official Music Video)', '(Official Audio)', '(Music Video)', \
+'(OFFICIAL VIDEO)', '(OFFICIAL MUSIC VIDEO)', '(OFFICIAL AUDIO)', '(MUSIC VIDEO)', \
+'[Official Video]', '[Official Music Video]', '[Official Audio]', '[Music Video]', \
+'[OFFICIAL VIDEO]', '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]', \
+'(Official HD Video)', '(Official HQ Video)', '(High Quality)', '(HIGH QUALITY)', \
+'(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(Video)', '(Audio)', '[Audio]', \
+'(Official Lyrics Video)', '(Lyric Video)', '(VIDEO)', '(AUDIO)', '[AUDIO]', \
+'[Official Lyrics Video]', '[Lyric Video]', \
+'(lyrics)', '(Lyrics)', '(LYRICS)', \
+'[lyrics]', '[Lyrics]', '[LYRICS]', \
+'Lyrics', 'lyrics', 'LYRICS', \
+'(hd)', '(hq)', '[hd]', '[hq]', \
+'(HD)', '(HQ)', '[HD]', '[HQ]', '[CC]'.
 
 Также он заполняет теги "исполнители" и "название".
 Если в названии видео нет символа "-", то название видео становится названием трека, а название канала - именем исполнителя.
@@ -51,7 +62,7 @@ HELP = \
 
 После скачивания, соответственно, советую подкорректировать теги, если это имеет для вас значение.
 
-Чтобы посмотреть доступные команды, наберите /commands.
+Чтобы посмотреть доступные команды, наберите /commands.\
 '''
 
 COMMANDS = \
@@ -59,7 +70,7 @@ COMMANDS = \
 /start - запустить бота.
 /info - инструкция по работе с ботом.
 /help - узнать основную информацию о боте (перед использование ОБЯЗАТЕЛЬНО ознакомьтесь).
-/commands - получить эту инструкцию.
+/commands - получить эту инструкцию.\
 '''
 
 INFO = \
@@ -85,7 +96,7 @@ f'''ВАЖНО. Если видео, аудиоряд которого вы хо
 Если в плейлисте меньше песен, нежели в диапазоне, что вы указали, песни скачаны не будут.
 
 К сожалению, каждый раз вам придётся присылать ссылку и диапазон заново.
-Возможно, в будущем это неудобство будет устранено.
+Возможно, в будущем это неудобство будет устранено.\
 '''
 
 WRONG_COMMAND = "Эта комманда не поддерживается."
