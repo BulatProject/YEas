@@ -12,6 +12,8 @@ BAN_LIST = ('/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%
         '(OFFICIAL VIDEO)', '(OFFICIAL MUSIC VIDEO)', '(OFFICIAL AUDIO)', '(MUSIC VIDEO)',
         '[Official Video]', '[Official Music Video]', '[Official Audio]', '[Music Video]',
         '[OFFICIAL VIDEO]', '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]',
+        'Official Video', 'Official Music Video', 'Official Audio', 'Music Video',
+        'OFFICIAL VIDEO', 'OFFICIAL MUSIC VIDEO', 'OFFICIAL AUDIO', 'MUSIC VIDEO',
         '(Official HD Video)', '(Official HQ Video)', '(High Quality)', '(HIGH QUALITY)', 
         '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(Video)', '(Audio)', '[Audio]',
         '(Official Lyrics Video)', '(Lyric Video)', '(VIDEO)', '(AUDIO)', '[AUDIO]',
@@ -42,10 +44,13 @@ HELP = '''\
 
 ВАЖНО!
 Бот автоматически убирает из названия песни следующие комбинации символов (в теги они тоже не попадут):
+'/', '\\', ':', '*', '?', '<', '>', '|', '"', "'", '@', '#', '&', '%', '^', \
 '(Official Video)', '(Official Music Video)', '(Official Audio)', '(Music Video)', \
 '(OFFICIAL VIDEO)', '(OFFICIAL MUSIC VIDEO)', '(OFFICIAL AUDIO)', '(MUSIC VIDEO)', \
 '[Official Video]', '[Official Music Video]', '[Official Audio]', '[Music Video]', \
 '[OFFICIAL VIDEO]', '[OFFICIAL MUSIC VIDEO]', '[OFFICIAL AUDIO]', '[MUSIC VIDEO]', \
+'Official Video', 'Official Music Video', 'Official Audio', 'Music Video', \
+'OFFICIAL VIDEO', 'OFFICIAL MUSIC VIDEO', 'OFFICIAL AUDIO', 'MUSIC VIDEO', \
 '(Official HD Video)', '(Official HQ Video)', '(High Quality)', '(HIGH QUALITY)', \
 '(OFFICIAL HD VIDEO)', '(OFFICIAL HQ VIDEO)', '(Video)', '(Audio)', '[Audio]', \
 '(Official Lyrics Video)', '(Lyric Video)', '(VIDEO)', '(AUDIO)', '[AUDIO]', \

@@ -1,8 +1,8 @@
 import logging
 from telegram import Update
 from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHandler, ContextTypes
-from check_availability import Checker
-from get_mp3 import Downloader
+from check_availability import Checker, logger_avaliability
+from get_mp3 import Downloader, logger_mp3
 from prepare_text import Preparator
 from pytube import Playlist
 from os import remove, listdir, path, getenv
@@ -15,7 +15,7 @@ TOKEN = getenv("TOKEN")
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("YEasy")
 logger.info("Logging started")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -78,8 +78,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         try:
             await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
-        except Exception:
+        except Exception as err:
             context.bot.send_message(chat_id=update.effective_chat.id, text='Возникла ошибка при отправке файла.')
+            logger.exception(err)
         finally:
             remove(final_result[1])
 

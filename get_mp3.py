@@ -4,6 +4,10 @@ from os import remove, rename
 import os.path as path
 import eyed3
 from TEXTS import BAN_LIST, CONVERSION, WEBM, MP3, CONVERSION_ERROR, DOWNLOADING_ERROR
+import logging
+
+
+logger_mp3 = logging.getLogger(__name__)
 
 
 class Downloader:
@@ -28,7 +32,8 @@ class Downloader:
         try:
             self.stream.download(output_path=self.path, filename=f'{self.finished_title}.webm')
             return (True, self)
-        except Exception:
+        except Exception as err:
+            logger_mp3.exception(err)
             return (False, DOWNLOADING_ERROR.format(self.title, self.author))        
 
     def convert(self):
@@ -43,7 +48,8 @@ class Downloader:
             else:
                 remove(input_file)
                 return (False, CONVERSION_ERROR.format(self.title, self.author))
-        except Exception:
+        except Exception as err:
+            logger_mp3.exception(err)
             remove(input_file)
             return (False, CONVERSION_ERROR.format(self.title, self.author))
 
@@ -58,7 +64,8 @@ class Downloader:
                 base.tag.artist, base.tag.title = self.altered_title.split(' - ', 1)
             base.tag.save()
             return self.rename_song(output_file)
-        except Exception:
+        except Exception as err:
+            logger_mp3.exception(err)
             return self.rename_song(output_file)
 
     def rename_song(self, output_file):
@@ -66,6 +73,7 @@ class Downloader:
             new_name = MP3.format(path.join(self.path, self.altered_title))
             rename(output_file, new_name)
             return (True, new_name)
-        except Exception:
+        except Exception as err:
+            logger_mp3.exception(err)
             return (True, output_file)
         
