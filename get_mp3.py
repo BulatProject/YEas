@@ -27,6 +27,8 @@ class Downloader:
         finished_title = title.replace(" ", "_")
         finished_title = finished_title.replace("(", "")
         self.finished_title = finished_title.replace(")", "")
+        if " - Topic" in self.author:
+            self.author = self.author.replace(" - Topic", "")
 
     def download(self):
         try:
