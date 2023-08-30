@@ -1,17 +1,20 @@
-from pytube import YouTube
-import subprocess
 from os import remove, rename
-import os.path as path
-import eyed3
-from TEXTS import BAN_LIST, CONVERSION, WEBM, MP3, CONVERSION_ERROR, DOWNLOADING_ERROR
+from typing import Callable
 import logging
+import os.path as path
+import subprocess
+
+from pytube import YouTube
+import eyed3
+
+from TEXTS import BAN_LIST, CONVERSION, WEBM, MP3, CONVERSION_ERROR, DOWNLOADING_ERROR
 
 
 logger_mp3 = logging.getLogger(__name__)
 
 
 class Downloader:
-    def __init__(self, yt, path):
+    def __init__(self, yt: YouTube, path: str):
         self.path = path
         self.yt = yt
         self.title = yt.title
@@ -30,7 +33,7 @@ class Downloader:
         if " - Topic" in self.author:
             self.author = self.author.replace(" - Topic", "")
 
-    def download(self):
+    def download(self) -> tuple[bool, str | Callable]:
         try:
             self.stream.download(output_path=self.path, filename=f'{self.finished_title}.webm')
             return (True, self)
@@ -38,7 +41,7 @@ class Downloader:
             logger_mp3.exception(err)
             return (False, DOWNLOADING_ERROR.format(self.title, self.author))        
 
-    def convert(self):
+    def convert(self) -> tuple[bool, str]:
         input_file = WEBM.format(path.join(self.path, self.finished_title))
         output_file = MP3.format(path.join(self.path, self.finished_title))
         command = CONVERSION.format(input_file, output_file)
@@ -56,7 +59,7 @@ class Downloader:
             return (False, CONVERSION_ERROR.format(self.title, self.author))
 
 
-    def set_tags(self, output_file):
+    def set_tags(self, output_file: str) -> tuple[bool, str]:
         try:
             base = eyed3.load(output_file)
             if ' - ' not in self.altered_title:
@@ -70,7 +73,7 @@ class Downloader:
             logger_mp3.exception(err)
             return self.rename_song(output_file)
 
-    def rename_song(self, output_file):
+    def rename_song(self, output_file: str) -> tuple[bool, str]:
         try:
             new_name = MP3.format(path.join(self.path, self.altered_title))
             rename(output_file, new_name)
