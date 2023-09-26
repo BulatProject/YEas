@@ -82,6 +82,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     else:
         try:
             await context.bot.send_document(chat_id=update.effective_chat.id, document=final_result[1])
+            logger.info(f"\"{final_result[1][10:]}\" has been sent")
         except Exception as err:
             context.bot.send_message(chat_id=update.effective_chat.id, text='Возникла ошибка при отправке файла.')
             logger.exception(err)

@@ -4,4 +4,4 @@ __pycache__/prepare_text.cpython-311.pyc
 __pycache__/TEXTS.cpython-311.pyc
 __pycache__/TOK.cpython-311.pyc
 .env
-tutorial-env/
+venv/
