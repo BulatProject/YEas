@@ -7,5 +7,5 @@ RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY . .
 RUN pip install -r requirements.txt
+EXPOSE 8081
 CMD ["python", "main.py"]
-EXPOSE 8080/tcp
